@@ -1,4 +1,5 @@
 const modal = document.getElementsByClassName('modal')[0]
+AOS.init();
 // Barre de recherche 
 document.getElementById("searchForm").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -37,17 +38,17 @@ const resultat = (results) => {
 
 // Fonction pour afficher un film ( Read more )
 const showFilm = (Title, Released, Poster) => {
-    const filmDiv = document.createElement('div');
-    filmDiv.classList.add('film-item');  
-    filmDiv.innerHTML = `
-        <div>
+    const filmDiv = document.getElementById('film');
+    // filmDiv.classList.add('film-item');  
+    filmDiv.innerHTML += `
+        <div class="test" data-aos="fade-left" data-aos-duration="1000">
             <img src="${Poster}">
             <h2> Titre : ${Title}</h2>
             <p> Date de sortie : ${Released} </p>
             <button class="readMoreBtn">Read more</button>
         </div>
     `;
-    document.getElementById('film').appendChild(filmDiv);
+    // document.getElementById('film').appendChild(filmDiv);
 
     // ajout d'un événement sur chaque bouton "Read more"
     filmDiv.querySelector('.readMoreBtn').addEventListener('click', function () {
@@ -96,12 +97,13 @@ window.onclick = function (event) {
     }
 }
 
-// Création de l'IntersectionObserver pour l'effet d'apparition au fur et à mesure du défilement
-let observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // Arrêter l'observation une fois que l'élément est devenu visible
-        }
-    });
-}, { threshold: 0.5 }); 
+// // Création de l'IntersectionObserver pour l'effet d'apparition au fur et à mesure du défilement
+// let observer = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//             entry.target.classList.add('visible');
+//             observer.unobserve(entry.target); // Arrêter l'observation une fois que l'élément est devenu visible
+//         }
+//     });
+// }, { threshold: 0.5 }); 
+
